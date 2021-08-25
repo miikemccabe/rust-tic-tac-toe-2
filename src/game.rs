@@ -33,6 +33,10 @@ impl Game {
     self.status
   }
 
+  pub fn display(&self) {
+    self.board.display();
+  }
+
   pub fn play(&mut self) {
     match get_choice() {
       Ok(Choice::Command(cmd)) => self.handle_command(&cmd),

@@ -42,4 +42,41 @@ impl Board {
     let (row, col) = coords;
     !(row > *len || col > *len)
   }
+
+  fn print_row(&self, row: usize) {
+      let row_label = match row {
+          0 => String::from("A"),
+          1 => String::from("B"),
+          2 => String::from("C"),
+          _ => String::from("")
+      };
+      println!("|          |          |          |");
+      println!("|     {}    |     {}    |     {}    |   {}",
+        self.cell_as_string((row, 0)),
+        self.cell_as_string((row, 1)),
+        self.cell_as_string((row, 2)),
+        row_label
+      );
+      println!("|          |          |          |");
+  }
+
+  fn cell_as_string(&self, coords: (usize, usize)) -> &str {
+    let cell = self.get_cell(coords);
+    match cell {
+      Some(Player::Cross) => "x",
+      Some(Player::Naught) => "o",
+      None => " "
+    }
+  }
+
+  pub fn display(&self) {
+      println!("     1           2          3     ");
+      println!("+----------+----------+----------+");
+      self.print_row(0);
+      println!("+----------+----------+----------+");
+      self.print_row(1);
+      println!("+----------+----------+----------+");
+      self.print_row(2);
+      println!("+----------+----------+----------+");
+  }
 }
