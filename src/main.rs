@@ -8,11 +8,11 @@ fn main() {
 
     let mut g = game::Game::new();
 
-    g.display();
     while g.get_status() == game::GameStatus::InProgress {
+        print!("\x1B[2J\x1B[1;1H");
+        g.display();
         println!("Player {}, take your turn", g.get_current_player());
         g.play();
-        g.display();
-        println!("{:?}", g);
+        // println!("{:?}", g);
     }
 }
