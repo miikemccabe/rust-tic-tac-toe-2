@@ -44,24 +44,7 @@ impl Board {
     !(row > *len || col > *len)
   }
 
-  fn print_row(&self, row: usize) {
-      let row_label = match row {
-          0 => String::from("A"),
-          1 => String::from("B"),
-          2 => String::from("C"),
-          _ => String::from("")
-      };
-      println!("|          |          |          |");
-      println!("|     {}    |     {}    |     {}    |   {}",
-        self.cell_as_string((row, 0)),
-        self.cell_as_string((row, 1)),
-        self.cell_as_string((row, 2)),
-        row_label
-      );
-      println!("|          |          |          |");
-  }
-
-  fn format_row(&self, row: usize) -> String {
+  fn format_values(&self, row: usize) -> String {
       let row_label = match row {
           0 => String::from("A"),
           1 => String::from("B"),
@@ -70,7 +53,6 @@ impl Board {
       };
 
       let mut s = String::new();
-      s.push_str("|          |          |          |\n");
       let data = format!("|     {}    |     {}    |     {}    |   {}\n",
         self.cell_as_string((row, 0)),
         self.cell_as_string((row, 1)),
@@ -78,7 +60,6 @@ impl Board {
         row_label
       );
       s.push_str(&data);
-      s.push_str("|          |          |          |\n");
       s
   }
 
@@ -94,11 +75,17 @@ impl Board {
       let mut s = String::new();
       s.push_str("     1           2          3     \n");
       s.push_str("+----------+----------+----------+\n");
-      s.push_str(&self.format_row(0));
+      s.push_str("|          |          |          |\n");
+      s.push_str(&self.format_values(0));
+      s.push_str("|          |          |          |\n");
       s.push_str("+----------+----------+----------+\n");
-      s.push_str(&self.format_row(1));
+      s.push_str("|          |          |          |\n");
+      s.push_str(&self.format_values(1));
+      s.push_str("|          |          |          |\n");
       s.push_str("+----------+----------+----------+\n");
-      s.push_str(&self.format_row(2));
+      s.push_str("|          |          |          |\n");
+      s.push_str(&self.format_values(2));
+      s.push_str("|          |          |          |\n");
       s.push_str("+----------+----------+----------+");
       staggered_display(&s);
   }
