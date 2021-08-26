@@ -16,6 +16,8 @@ pub fn get_choice() -> Result<Choice, String> {
   
   let mut cell = String::new();
 
+  println!("Choose a cell: ");
+
   io::stdin()
       .read_line(&mut cell)
       .expect("Failed to read line");
