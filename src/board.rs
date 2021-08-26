@@ -60,12 +60,11 @@ impl Board {
       println!("|          |          |          |");
   }
 
-  fn cell_as_string(&self, coords: (usize, usize)) -> &str {
+  fn cell_as_string(&self, coords: (usize, usize)) -> String {
     let cell = self.get_cell(coords);
     match cell {
-      Some(Player::Cross) => "x",
-      Some(Player::Naught) => "o",
-      None => " "
+      Some(player) => player.to_string(),
+      None => String::from(" ")
     }
   }
 
