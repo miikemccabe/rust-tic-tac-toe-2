@@ -1,4 +1,5 @@
 use crate::player::Player;
+use crate::animate::staggered_display;
 
 const GRID: [[Option<Player>; 3]; 3] = [
   [None, None, None],
@@ -60,6 +61,27 @@ impl Board {
       println!("|          |          |          |");
   }
 
+  fn format_row(&self, row: usize) -> String {
+      let row_label = match row {
+          0 => String::from("A"),
+          1 => String::from("B"),
+          2 => String::from("C"),
+          _ => String::from("")
+      };
+
+      let mut s = String::new();
+      s.push_str("|          |          |          |\n");
+      let data = format!("|     {}    |     {}    |     {}    |   {}\n",
+        self.cell_as_string((row, 0)),
+        self.cell_as_string((row, 1)),
+        self.cell_as_string((row, 2)),
+        row_label
+      );
+      s.push_str(&data);
+      s.push_str("|          |          |          |\n");
+      s
+  }
+
   fn cell_as_string(&self, coords: (usize, usize)) -> String {
     let cell = self.get_cell(coords);
     match cell {
@@ -69,13 +91,15 @@ impl Board {
   }
 
   pub fn display(&self) {
-      println!("     1           2          3     ");
-      println!("+----------+----------+----------+");
-      self.print_row(0);
-      println!("+----------+----------+----------+");
-      self.print_row(1);
-      println!("+----------+----------+----------+");
-      self.print_row(2);
-      println!("+----------+----------+----------+");
+      let mut s = String::new();
+      s.push_str("     1           2          3     \n");
+      s.push_str("+----------+----------+----------+\n");
+      s.push_str(&self.format_row(0));
+      s.push_str("+----------+----------+----------+\n");
+      s.push_str(&self.format_row(1));
+      s.push_str("+----------+----------+----------+\n");
+      s.push_str(&self.format_row(2));
+      s.push_str("+----------+----------+----------+");
+      staggered_display(&s);
   }
 }
