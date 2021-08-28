@@ -43,51 +43,36 @@ impl Board {
     let (row, col) = coords;
     !(row > *len || col > *len)
   }
-
-  fn format_values(&self, row: usize) -> String {
-      let row_label = match row {
-          0 => String::from("A"),
-          1 => String::from("B"),
-          2 => String::from("C"),
-          _ => String::from("")
-      };
-
-      let mut s = String::new();
-      let data = format!("|     {}    |     {}    |     {}    |   {}",
-        self.cell_as_string((row, 0)),
-        self.cell_as_string((row, 1)),
-        self.cell_as_string((row, 2)),
-        row_label
-      );
-      s.push_str(&data);
-      s
-  }
-
-  fn cell_as_string(&self, coords: (usize, usize)) -> String {
-    let cell = self.get_cell(coords);
-    match cell {
-      Some(player) => player.to_string(),
-      None => String::from(" ")
-    }
-  }
 }
 
 impl fmt::Display for Board {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    writeln!(f, "     1           2          3     ");
-    writeln!(f, "+----------+----------+----------+");
-    writeln!(f, "|          |          |          |");
-    writeln!(f, "{}", self.format_values(0));
-    writeln!(f, "|          |          |          |");
-    writeln!(f, "+----------+----------+----------+");
-    writeln!(f, "|          |          |          |");
-    writeln!(f, "{}", self.format_values(1));
-    writeln!(f, "|          |          |          |");
-    writeln!(f, "+----------+----------+----------+");
-    writeln!(f, "|          |          |          |");
-    writeln!(f, "{}", self.format_values(2));
-    writeln!(f, "|          |          |          |");
-    writeln!(f, "+----------+----------+----------+");
+    let a1 = self.get_cell((0,0)).map_or_else(|| " ".to_string(), |p| p.to_string());
+    let a2 = self.get_cell((0,1)).map_or_else(|| " ".to_string(), |p| p.to_string());
+    let a3 = self.get_cell((0,2)).map_or_else(|| " ".to_string(), |p| p.to_string());
+
+    let b1 = self.get_cell((1,0)).map_or_else(|| " ".to_string(), |p| p.to_string());
+    let b2 = self.get_cell((1,1)).map_or_else(|| " ".to_string(), |p| p.to_string());
+    let b3 = self.get_cell((1,2)).map_or_else(|| " ".to_string(), |p| p.to_string());
+
+    let c1 = self.get_cell((2,0)).map_or_else(|| " ".to_string(), |p| p.to_string());
+    let c2 = self.get_cell((2,1)).map_or_else(|| " ".to_string(), |p| p.to_string());
+    let c3 = self.get_cell((2,2)).map_or_else(|| " ".to_string(), |p| p.to_string());
+
+    writeln!(f, "     1           2          3     ")?;
+    writeln!(f, "+----------+----------+----------+")?;
+    writeln!(f, "|          |          |          |")?;
+    writeln!(f, "|    {}     |    {}     |    {}     |  A", a1, a2, a3)?;
+    writeln!(f, "|          |          |          |")?;
+    writeln!(f, "+----------+----------+----------+")?;
+    writeln!(f, "|          |          |          |")?;
+    writeln!(f, "|    {}     |    {}     |    {}     |  B", b1, b2, b3)?;
+    writeln!(f, "|          |          |          |")?;
+    writeln!(f, "+----------+----------+----------+")?;
+    writeln!(f, "|          |          |          |")?;
+    writeln!(f, "|    {}     |    {}     |    {}     |  C", c1, c2, c3)?;
+    writeln!(f, "|          |          |          |")?;
+    writeln!(f, "+----------+----------+----------+")?;
     Ok(())
   }
 }

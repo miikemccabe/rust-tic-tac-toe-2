@@ -35,7 +35,7 @@ impl Game {
   }
 
   pub fn display(&self) {
-    staggered_display(&self.board.to_string());
+    staggered_display(&self.board.to_string()).expect_err("Display error");
   }
 
   pub fn play(&mut self) {
