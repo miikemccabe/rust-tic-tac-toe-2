@@ -1,5 +1,5 @@
+use std::fmt;
 use crate::player::Player;
-use crate::animate::staggered_display;
 
 const GRID: [[Option<Player>; 3]; 3] = [
   [None, None, None],
@@ -53,7 +53,7 @@ impl Board {
       };
 
       let mut s = String::new();
-      let data = format!("|     {}    |     {}    |     {}    |   {}\n",
+      let data = format!("|     {}    |     {}    |     {}    |   {}",
         self.cell_as_string((row, 0)),
         self.cell_as_string((row, 1)),
         self.cell_as_string((row, 2)),
@@ -70,23 +70,24 @@ impl Board {
       None => String::from(" ")
     }
   }
+}
 
-  pub fn display(&self) {
-      let mut s = String::new();
-      s.push_str("     1           2          3     \n");
-      s.push_str("+----------+----------+----------+\n");
-      s.push_str("|          |          |          |\n");
-      s.push_str(&self.format_values(0));
-      s.push_str("|          |          |          |\n");
-      s.push_str("+----------+----------+----------+\n");
-      s.push_str("|          |          |          |\n");
-      s.push_str(&self.format_values(1));
-      s.push_str("|          |          |          |\n");
-      s.push_str("+----------+----------+----------+\n");
-      s.push_str("|          |          |          |\n");
-      s.push_str(&self.format_values(2));
-      s.push_str("|          |          |          |\n");
-      s.push_str("+----------+----------+----------+");
-      staggered_display(&s);
+impl fmt::Display for Board {
+  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    writeln!(f, "     1           2          3     ");
+    writeln!(f, "+----------+----------+----------+");
+    writeln!(f, "|          |          |          |");
+    writeln!(f, "{}", self.format_values(0));
+    writeln!(f, "|          |          |          |");
+    writeln!(f, "+----------+----------+----------+");
+    writeln!(f, "|          |          |          |");
+    writeln!(f, "{}", self.format_values(1));
+    writeln!(f, "|          |          |          |");
+    writeln!(f, "+----------+----------+----------+");
+    writeln!(f, "|          |          |          |");
+    writeln!(f, "{}", self.format_values(2));
+    writeln!(f, "|          |          |          |");
+    writeln!(f, "+----------+----------+----------+");
+    Ok(())
   }
 }

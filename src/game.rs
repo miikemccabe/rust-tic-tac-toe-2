@@ -1,6 +1,7 @@
 use crate::board::Board;
 use crate::player::Player;
 use crate::io::{get_choice, Command, Choice};
+use crate::animate::staggered_display;
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub enum GameStatus {
@@ -34,7 +35,7 @@ impl Game {
   }
 
   pub fn display(&self) {
-    self.board.display();
+    staggered_display(&self.board.to_string());
   }
 
   pub fn play(&mut self) {
