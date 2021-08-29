@@ -60,19 +60,25 @@ impl fmt::Display for Board {
     let c3 = self.get_cell((2,2)).map_or_else(|| " ".to_string(), |p| p.to_string());
 
     writeln!(f, "     1           2          3     ")?;
-    writeln!(f, "┏━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┓")?;
-    writeln!(f, "┃          ┃          ┃          ┃")?;
-    writeln!(f, "┃     {}    ┃     {}    ┃     {}    ┃  A", a1, a2, a3)?;
-    writeln!(f, "┃          ┃          ┃          ┃")?;
-    writeln!(f, "┣━━━━━━━━━━╋━━━━━━━━━━╋━━━━━━━━━━┫")?;
-    writeln!(f, "┃          ┃          ┃          ┃")?;
-    writeln!(f, "┃     {}    ┃     {}    ┃     {}    ┃  B", b1, b2, b3)?;
-    writeln!(f, "┃          ┃          ┃          ┃")?;
-    writeln!(f, "┣━━━━━━━━━━╋━━━━━━━━━━╋━━━━━━━━━━┫")?;
-    writeln!(f, "┃          ┃          ┃          ┃")?;
-    writeln!(f, "┃     {}    ┃     {}    ┃     {}    ┃  C", c1, c2, c3)?;
-    writeln!(f, "┃          ┃          ┃          ┃")?;
-    writeln!(f, "┗━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┛")?;
+    writeln!(f, "┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓")?;
+    writeln!(f, "┃           ┃           ┃           ┃")?;
+    writeln!(f, "┃           ┃           ┃           ┃")?;
+    writeln!(f, "┃     {}     ┃     {}     ┃     {}     ┃  A", a1, a2, a3)?;
+    writeln!(f, "┃           ┃           ┃           ┃")?;
+    writeln!(f, "┃           ┃           ┃           ┃")?;
+    writeln!(f, "┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫")?;
+    writeln!(f, "┃           ┃           ┃           ┃")?;
+    writeln!(f, "┃           ┃           ┃           ┃")?;
+    writeln!(f, "┃     {}     ┃     {}     ┃     {}     ┃  B", b1, b2, b3)?;
+    writeln!(f, "┃           ┃           ┃           ┃")?;
+    writeln!(f, "┃           ┃           ┃           ┃")?;
+    writeln!(f, "┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫")?;
+    writeln!(f, "┃           ┃           ┃           ┃")?;
+    writeln!(f, "┃           ┃           ┃           ┃")?;
+    writeln!(f, "┃     {}     ┃     {}     ┃     {}     ┃  C", c1, c2, c3)?;
+    writeln!(f, "┃           ┃           ┃           ┃")?;
+    writeln!(f, "┃           ┃           ┃           ┃")?;
+    writeln!(f, "┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛")?;
     Ok(())
   }
 }
