@@ -2,7 +2,6 @@ mod board;
 mod player;
 mod game;
 mod io;
-mod animate;
 
 fn main() {
 
