@@ -32,8 +32,12 @@ impl Board {
   pub fn set_cell(&mut self, coords: (usize, usize), value: Player) -> Result<(), String> {
     let (row, col) = coords;
     if self.coords_in_range(coords) {
-      self.grid[row][col] = Some(value);
-      Ok(())
+      if self.get_cell(coords).is_none() {
+        self.grid[row][col] = Some(value);
+        Ok(())
+      } else {
+        Err(String::from("Cell has already been set"))
+      }
     } else {
       Err(format!("Can't set cell at {},{}", row, col))
     }

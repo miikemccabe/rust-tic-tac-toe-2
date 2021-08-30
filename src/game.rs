@@ -44,7 +44,14 @@ impl Game {
       Ok(Choice::Cell((row, col))) => {
         match self.board.set_cell((row, col), self.current_player) {
           Ok(()) => {
+            print!("\x1B[2J\x1B[1;1H"); // Clears the terminal
             self.toggle_player();
+            self.display();
+            println!("Player {}, take your turn", self.get_current_player());
+            println!();
+            println!("c: Clear the board");
+            println!("q: quit");
+            println!();
           },
           Err(err) => {
             println!("{}", err);
