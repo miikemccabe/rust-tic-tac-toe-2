@@ -37,10 +37,6 @@ impl Game {
     }
   }
 
-  pub fn get_current_player(&self) -> Player {
-    self.current_player
-  }
-
   pub fn get_status(&self) -> GameStatus {
     self.status
   }
@@ -73,6 +69,7 @@ impl Game {
         println!("{}", err);
       }
     }
+
     if let Some(player) = self.find_winner() {
       self.status = GameStatus::Won(*player);
       self.handle_win();
@@ -113,6 +110,10 @@ impl Game {
         self.display();
       },
     }
+  }
+
+  fn get_current_player(&self) -> Player {
+    self.current_player
   }
 
   fn toggle_player(&mut self) {
