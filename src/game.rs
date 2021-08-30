@@ -2,15 +2,15 @@ use crate::board::Board;
 use crate::player::Player;
 use crate::io::{get_choice, Command, Choice};
 
-const WINNING_COMBOS: [[(usize, usize); 3]; 8]  = [
-  [(0,0), (0,1), (0,2)],
-  [(1,0), (1,1), (1,2)],
-  [(2,0), (2,1), (2,2)],
-  [(0,0), (1,0), (2,0)],
-  [(0,1), (1,1), (2,1)],
-  [(0,2), (1,2), (2,2)],
-  [(0,0), (1,1), (2,2)],
-  [(2,0), (1,1), (0,2)],
+const WINNING_COMBOS: [[usize; 3]; 8]  = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
 ];
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
@@ -59,8 +59,8 @@ impl Game {
     println!();
     match get_choice() {
       Ok(Choice::Command(cmd)) => self.handle_command(&cmd),
-      Ok(Choice::Cell((row, col))) => {
-        match self.board.set_cell((row, col), self.current_player) {
+      Ok(Choice::Cell(cell)) => {
+        match self.board.set_cell(cell, self.current_player) {
           Ok(()) => {
             self.toggle_player();
           },
@@ -127,11 +127,11 @@ impl Game {
 
     for combo in WINNING_COMBOS {
       // Get the player at the first cell of each winning combo
-      let player = self.board.get_cell((combo[0].0, combo[0].1));
+      let player = self.board.get_cell(combo[0]);
       // Loop over each cell of the 3 cell winning combo
       for cell in combo {
         // Get the value of the cell
-        let current = self.board.get_cell((cell.0, cell.1));
+        let current = self.board.get_cell(cell);
         // If this cell matches the current player, we've got a potential winner
         if current.is_some() && player.is_some() && current.unwrap() == player.unwrap() {
           // Tentatively set this as the winner and continue checking the rest of the combo

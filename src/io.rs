@@ -6,7 +6,7 @@ pub enum Command {
 }
 
 pub enum Choice {
-  Cell((usize, usize)),
+  Cell(usize),
   Command(Command)
 }
 
@@ -49,7 +49,7 @@ fn parse_command(command: &str) -> Result<Command, ()> {
   }
 }
 
-fn parse_coords(cell: &str) -> Result<(usize, usize), CoordsError> {
+fn parse_coords(cell: &str) -> Result<usize, CoordsError> {
 
   if cell.len() > 2 {
      return Err(CoordsError(String::from("Too many coordinates")))
@@ -74,8 +74,8 @@ fn parse_coords(cell: &str) -> Result<(usize, usize), CoordsError> {
 
   let row: Option<usize> =  match cell[1].to_lowercase().as_ref() {
       "a" => Some(0),
-      "b" => Some(1),
-      "c" => Some(2),
+      "b" => Some(3),
+      "c" => Some(6),
       _ => None
   };
   
@@ -83,5 +83,5 @@ fn parse_coords(cell: &str) -> Result<(usize, usize), CoordsError> {
       return Err(CoordsError(String::from("Can't parse row")));
   }
 
-  Ok((row.unwrap(), column.unwrap() - 1))
+  Ok(row.unwrap() + column.unwrap() - 1)
 }
