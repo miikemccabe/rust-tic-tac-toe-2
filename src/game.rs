@@ -122,7 +122,7 @@ impl Game {
     }
   }
 
-  pub fn find_winner(&self) -> Option<&Player> {
+  fn find_winner(&self) -> Option<&Player> {
     let mut winner: Option<&Player> = None;
 
     for combo in WINNING_COMBOS {

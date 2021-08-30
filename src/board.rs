@@ -42,11 +42,6 @@ impl Board {
       Err(format!("Can't set cell at {},{}", row, col))
     }
   }
-  fn coords_in_range(&self, coords: (usize, usize)) -> bool {
-    let len = &self.grid.len();
-    let (row, col) = coords;
-    !(row > *len || col > *len)
-  }
   pub fn is_full(&self)-> bool {
     let mut full = true;
     for row in &self.grid {
@@ -58,6 +53,11 @@ impl Board {
       }
     }
     full
+  }
+  fn coords_in_range(&self, coords: (usize, usize)) -> bool {
+    let len = &self.grid.len();
+    let (row, col) = coords;
+    !(row > *len || col > *len)
   }
 }
 
