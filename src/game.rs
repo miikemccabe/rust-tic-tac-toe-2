@@ -5,6 +5,7 @@ use crate::io::{get_choice, Command, Choice};
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub enum GameStatus {
   Won(Player),
+  Draw,
   Quit,
   InProgress,
 }
@@ -61,6 +62,18 @@ impl Game {
         println!("{}", err);
       }
     }
+    if self.board.is_full() {
+      self.handle_draw();
+    }
+  }
+
+  fn handle_draw(&mut self) {
+    self.status = GameStatus::Draw;
+    print!("\x1B[2J\x1B[1;1H"); // Clears the terminal
+    self.display();
+    println!();
+    println!("It's a draw!");
+    println!();
   }
 
   fn handle_command(&mut self, cmd: &Command) {

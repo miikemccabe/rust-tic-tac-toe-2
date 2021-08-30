@@ -47,6 +47,18 @@ impl Board {
     let (row, col) = coords;
     !(row > *len || col > *len)
   }
+  pub fn is_full(&self)-> bool {
+    let mut full = true;
+    for row in &self.grid {
+      for cell in row {
+        if cell.is_none() {
+          full = false;
+          break;
+        }
+      }
+    }
+    full
+  }
 }
 
 impl fmt::Display for Board {
