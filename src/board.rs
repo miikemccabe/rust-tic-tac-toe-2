@@ -50,35 +50,27 @@ impl Board {
 
 impl fmt::Display for Board {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    let a1 = self.get_cell(0).map_or_else(|| " ".to_string(), |p| p.to_string());
-    let a2 = self.get_cell(1).map_or_else(|| " ".to_string(), |p| p.to_string());
-    let a3 = self.get_cell(2).map_or_else(|| " ".to_string(), |p| p.to_string());
-
-    let b1 = self.get_cell(3).map_or_else(|| " ".to_string(), |p| p.to_string());
-    let b2 = self.get_cell(4).map_or_else(|| " ".to_string(), |p| p.to_string());
-    let b3 = self.get_cell(5).map_or_else(|| " ".to_string(), |p| p.to_string());
-
-    let c1 = self.get_cell(6).map_or_else(|| " ".to_string(), |p| p.to_string());
-    let c2 = self.get_cell(7).map_or_else(|| " ".to_string(), |p| p.to_string());
-    let c3 = self.get_cell(8).map_or_else(|| " ".to_string(), |p| p.to_string());
+    let cells_as_strings: Vec<String> = self.grid.iter().map(
+      |c| c.map_or_else(|| " ".to_string(),|p| p.to_string())
+    ).collect();
 
     writeln!(f, "     1           2          3     ")?;
     writeln!(f, "┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
-    writeln!(f, "┃     {}     ┃     {}     ┃     {}     ┃  A", a1, a2, a3)?;
+    writeln!(f, "┃     {}     ┃     {}     ┃     {}     ┃  A", cells_as_strings[0], cells_as_strings[1], cells_as_strings[2])?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
-    writeln!(f, "┃     {}     ┃     {}     ┃     {}     ┃  B", b1, b2, b3)?;
+    writeln!(f, "┃     {}     ┃     {}     ┃     {}     ┃  A", cells_as_strings[3], cells_as_strings[4], cells_as_strings[5])?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
-    writeln!(f, "┃     {}     ┃     {}     ┃     {}     ┃  C", c1, c2, c3)?;
+    writeln!(f, "┃     {}     ┃     {}     ┃     {}     ┃  A", cells_as_strings[6], cells_as_strings[7], cells_as_strings[8])?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛")?;
