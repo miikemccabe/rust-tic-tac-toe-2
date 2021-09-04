@@ -47,12 +47,12 @@ impl Game {
 
   pub fn play(&mut self) {
     print!("\x1B[2J\x1B[1;1H"); // Clears the terminal
-    self.display();
     println!("Player {}, take your turn", self.get_current_player());
     println!();
     println!("c: Clear the board");
     println!("q: quit");
     println!();
+    self.display();
     match get_choice() {
       Ok(Choice::Command(cmd)) => self.handle_command(&cmd),
       Ok(Choice::Cell(cell)) => {
@@ -74,6 +74,7 @@ impl Game {
       self.status = GameStatus::Won(*player);
       self.handle_win();
     }
+
     if self.board.is_full() {
       self.handle_draw();
     }

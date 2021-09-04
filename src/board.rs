@@ -66,13 +66,13 @@ impl fmt::Display for Board {
     writeln!(f, "┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
-    writeln!(f, "┃     {}     ┃     {}     ┃     {}     ┃  A", cells_as_strings[3], cells_as_strings[4], cells_as_strings[5])?;
+    writeln!(f, "┃     {}     ┃     {}     ┃     {}     ┃  B", cells_as_strings[3], cells_as_strings[4], cells_as_strings[5])?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
-    writeln!(f, "┃     {}     ┃     {}     ┃     {}     ┃  A", cells_as_strings[6], cells_as_strings[7], cells_as_strings[8])?;
+    writeln!(f, "┃     {}     ┃     {}     ┃     {}     ┃  C", cells_as_strings[6], cells_as_strings[7], cells_as_strings[8])?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┃           ┃           ┃           ┃")?;
     writeln!(f, "┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛")?;
