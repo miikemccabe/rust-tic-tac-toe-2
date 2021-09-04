@@ -51,7 +51,9 @@ impl Board {
 impl fmt::Display for Board {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
     let cells_as_strings: Vec<String> = self.grid.iter().map(
-      |c| c.map_or_else(|| " ".to_string(),|p| p.to_string())
+      |c| {
+        c.map_or_else(|| " ".to_string(),|p| p.to_string())
+      }
     ).collect();
 
     writeln!(f, "     1           2          3     ")?;
